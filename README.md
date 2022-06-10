@@ -20,3 +20,26 @@ curl --location --request GET 'http://localhost:8090/hello' \
 ```
 
 API (resource endpoints) should verify the `token` with `private key`
+
+
+# How to launch the demo
+
+### Start Auth service
+ ```
+ cd auth-magic
+ yarn start
+ ```
+ Follow instractions to get the link.
+
+ ### Start Go Api service
+ ```
+ cd .. 
+ go run main.go
+ ```
+
+### Test all together
+Copy token, replace `WyI... token ...jFiXCJ9Il0=` and make a request ot API
+ ```
+curl --location --request GET 'http://localhost:8090/hello' \
+--header 'Authorization: Bearer WyI... token ...jFiXCJ9Il0='
+```
