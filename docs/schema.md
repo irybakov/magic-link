@@ -1,6 +1,6 @@
 # Tables
 
-KEYS - stores all active `key Pairs`. We assume ot have several active key pairs in case of rotation.
+KEYS - stores all active `key Pairs`. We assume to have several active key pairs in case of rotation.
 
 ```mermaid
 erDiagram
