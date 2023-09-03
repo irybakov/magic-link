@@ -54,6 +54,11 @@ func headers(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
+func endpoint(w http.ResponseWriter, req *http.Request) {
+
+	fmt.Fprintf(w, "{\"d\": 123}")
+}
+
 func main() {
 
 	secret_key = os.Getenv("MAGIC_SECRET")
@@ -61,6 +66,7 @@ func main() {
 	magicSDK = client.New(secret_key, magic.NewDefaultClient())
 
 	http.HandleFunc("/hello", hello)
+	http.HandleFunc("/endpoint", endpoint)
 	http.HandleFunc("/headers", headers)
 
 	http.ListenAndServe(":8090", nil)
