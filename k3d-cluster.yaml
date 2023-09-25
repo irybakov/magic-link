@@ -1,0 +1,27 @@
+# k3d configuration file
+apiVersion: k3d.io/v1alpha5 # this will change in the future as we make everything more stable
+kind: Simple # internally, we also have a Cluster config, which is not yet available externally
+servers: 1 # same as `--servers 1`
+agents: 2 # same as `--agents 2`
+volumes: # repeatable flags are represented as YAML lists
+  #- volume: /my/host/path:/path/in/node # same as `--volume '/my/host/path:/path/in/node@server:0;agent:*'`
+  #  nodeFilters:
+  #    - server:0
+  #    - agent:*
+  - volume: /Users/irybakov/Develop/github/magic-link/tmp/kafka-data:/var/lib/kafka/data
+    nodeFilters:
+      - server:0
+      - agent:*
+  - volume: /Users/irybakov/Develop/github/magic-link/tmp/zookeeper-data/data:/var/lib/zookeeper/data
+    nodeFilters:
+      - server:0
+      - agent:*
+  - volume: /Users/irybakov/Develop/github/magic-link/tmp/zookeeper-data/log:/var/lib/zookeeper/log
+    nodeFilters:
+      - server:0
+      - agent:*        
+ports:
+  - port: 8080:80 # same as `--port '8080:80@loadbalancer'`
+    nodeFilters:
+      - loadbalancer
+

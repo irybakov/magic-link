@@ -56,7 +56,7 @@ func headers(w http.ResponseWriter, req *http.Request) {
 
 func endpoint(w http.ResponseWriter, req *http.Request) {
 
-	fmt.Fprintf(w, "{\"d\": 123}")
+	fmt.Fprintf(w, "{\"d\": 1234}")
 }
 
 func main() {

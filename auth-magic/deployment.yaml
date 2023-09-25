@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-magic
+  labels:
+    app: auth-magic
+spec:
+  clusterIP: None
+  selector:
+    app: auth-magic
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-magic
+  labels:
+    app: auth-magic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-magic
+  template:
+    metadata:
+      labels:
+        app: auth-magic
+    spec:
+      containers:
+      - name: auth-magic
+        image: auth-magic
+        ports:
+        - containerPort: 8081

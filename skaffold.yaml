@@ -1,0 +1,27 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: magic-link
+build:
+  artifacts:
+    - image: auth-magic
+      docker:
+        dockerfile: Dockerfile
+    - image: magic-service
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - auth-magic/deployment.yaml
+    - deployment.yaml
+portForward:
+- resourceType: deployment
+  resourceName: magic-service
+  namespace: default
+  port: 8090
+  localPort: 8090
+- resourceType: deployment
+  resourceName: auth-magic
+  namespace: default
+  port: 8081
+  localPort: 8081  
